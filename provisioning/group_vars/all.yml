@@ -10,5 +10,8 @@ https_proxy: '{{ http_proxy }}'
 no_proxy: localhost,127.0.0.1,devbox,10.0.2.15,.priv.atos.fr,.local
 
 git_config_global:
-  - { name: "user.name",  value: "nicolas.viallatte" }
-  - { name: "user.email", value: "nicolas.viallatte@worldline.com" }
+  - { name: "user.name",  value: "name" }
+  - { name: "user.email", value: "email" }
+
+docker_users:
+  - '{{ main_user }}'

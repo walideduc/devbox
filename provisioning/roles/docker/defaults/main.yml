@@ -1,6 +1,5 @@
 ---
-docker_users:
-  - '{{ main_user }}'
+
 docker_proxy_enabled: '{{ proxy.enabled }}'
 docker_proxy_env:
   - "HTTP_PROXY={{ http_proxy }}"

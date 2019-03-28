@@ -1,2 +1,3 @@
 provisioning/roles/geerlingguy.*
 provisioning/roles/gantsign.*
+.vagrant
