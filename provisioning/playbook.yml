@@ -18,7 +18,7 @@
           - username: '{{ main_user }}'
           - username: root
 
-- hosts: docker
+- hosts: all
   become: yes
   roles:
     - role: docker
