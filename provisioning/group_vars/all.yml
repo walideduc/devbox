@@ -1,0 +1,14 @@
+main_user: vagrant
+
+proxy:
+  enabled: false
+  host: proxy.priv.atos.fr
+  port: 3128
+
+http_proxy: "http://{{ proxy.host }}:{{ proxy.port }}"
+https_proxy: '{{ http_proxy }}'
+no_proxy: localhost,127.0.0.1,devbox,10.0.2.15,.priv.atos.fr,.local
+
+git_config_global:
+  - { name: "user.name",  value: "nicolas.viallatte" }
+  - { name: "user.email", value: "nicolas.viallatte@worldline.com" }

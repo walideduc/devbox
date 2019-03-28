@@ -1,0 +1,55 @@
+---
+- name: Install epel release repo
+  yum:
+    name=nginx
+    state=present
+
+- name: Install network packages
+  yum: name={{item}} state=present
+  with_items:
+    - telnet
+    - wget
+    - net-tools
+    - bind-utils
+    - connect-proxy
+    - socat
+
+- name: Install editor packages
+  yum: name={{item}} state=present
+  with_items:
+    - vim
+    - tmux
+
+- name: Install file packages
+  yum: name={{item}} state=present
+  with_items:
+    - dos2unix
+    - jq
+    - zip
+    - unzip
+    - lsof
+    - mlocate
+
+- name: Install pip
+  yum: name={{item}} state=present
+  with_items:
+    - python-pip
+
+- name: Install git packages
+  yum: name={{item}} state=present
+  with_items:
+    - git
+    - git-lfs
+
+- name: Define git config
+  become: no
+  git_config:
+    name="{{ item.name }}"
+    value="{{ item.value }}"
+    scope=global
+  with_items:
+    - '{{ git_config_global }}'
+
+- name: Set timezone
+  timezone:
+    name: Europe/Paris
