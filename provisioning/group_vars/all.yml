@@ -1,7 +1,7 @@
 main_user: vagrant
 
 proxy:
-  enabled: false
+  enabled: true
   host: proxy.priv.atos.fr
   port: 3128
 

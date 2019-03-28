@@ -20,10 +20,3 @@
 
 - meta: flush_handlers
 
-- name: get transparent proxy container id
-  shell: docker ps -q -f name=transparent-proxy
-  register: transparent_proxy_id
-
-- name: launch transparent proxy container
-  command: "docker run -d --restart always --privileged -e HTTP_PROXY={{ proxy.host }}:{{ proxy.port }} -e NO_PROXY={{ no_proxy }} --net=host --name transparent-proxy fengzhou/transparent-proxy"
-  when: docker_proxy_enabled == true and transparent_proxy_id.stdout == ""
