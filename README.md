@@ -1,4 +1,4 @@
-# DevBox Kubernetes & Helm
+# DevBox
 
 ## Description
 
@@ -19,12 +19,15 @@ Un dossier partagé est automatiquement provisionné entre Windows, sur `$(pwd)`
 ## Lancement
 
 Pour lancer la VM et provisionner l'ensemble de l'écosystème de façon automatique il faut cloner ce repo, et à la racine, lancer la ligne de commande suivante :
-
 ```bash
 vagrant up
 ```
 
-Une fois le déploiement terminé, lancer le navigateur sur `https://dashboard.vcap.me` et sélectionner `Skip` : Vous avez accès au dashboard Kubernetes.
+Accès à la box : 
+```bash
+vagrant ssh
+```
+ou encore, il est possible d'ajouter la clé SSH privée présente dans `.vagrant\machines\devbox\virtualbox\private_key` dans Putty et d'y accéder à l'aide d'un vrai terminal.
 
 NB : En fonction du système et de la connexion internet, le provisioning de la VM s'effectue en 1H environ
 
