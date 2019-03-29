@@ -39,6 +39,26 @@
   with_items:
     - '{{ git_config_global }}'
 
+- name: Add kubectl repository
+  yum_repository:
+    name: kubernetes
+    description: kubernetes repo
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    enabled: true
+    gpgcheck: true
+    repo_gpgcheck: true
+    gpgkey: ['https://packages.cloud.google.com/yum/doc/yum-key.gpg', 'https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg']
+
+- name: Install kubectl
+  yum:
+    name: kubectl
+    state: present
+
+- name: Install awscli
+  pip:
+    name: awscli
+    state: present
+
 - name: Set timezone
   timezone:
     name: Europe/Paris
