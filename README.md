@@ -41,13 +41,38 @@ vagrant halt
 
 ## Customisation
 
-La customisation de la VM est possible. Par exemple modifier les proxys utilisés depuis le fichier `provisioning/group_vars/all.yml`.
-La configuration Git de `user.name` et `user.email` est à modifier dans ce même fichier.
+La customisation de la VM est possible. Elle s'effectue depuis le fichier `provisioning/group_vars/all.yml`.
 
+La configuration Git de `user.name` et `user.email` :
 ```yaml
 git_config_global:
   - { name: "user.name",  value: "name" }
   - { name: "user.email", value: "email" }
 ```
 
-Le reste de la customisation peut être effectué dans le fichier `Vagrantfile`. 
+La configuration des credentials d'accès à AWS :
+```yaml
+aws:
+  oat:
+    region: oat_region
+    role_arn: oat_role_arn
+  pro:
+    region: pro_region
+    role_arn: pro_role_arn
+  access_key: aws_access_key
+  secret_access_key: aws_secret_access_key
+```
+
+Le reste de la customisation peut être effectué dans le fichier `Vagrantfile`.
+
+## Commandes
+
+Mise à jour kubeconfig pour OAT :
+```bash
+aws eks update-kubeconfig --name softwarefactory-oat --role-arn arn:aws:iam::094242746997:role/rol-softfactory-oat-base-wl --profile oat
+```
+
+Mise à jour kubeconfig pour PRO :
+```bash
+aws eks update-kubeconfig --name softwarefactory-pro --role-arn arn:aws:iam::717170762493:role/rol-softfactory-pro-base-wl --profile pro
+```
