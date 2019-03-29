@@ -6,41 +6,29 @@
     state=present
 
 - name: Install network packages
-  yum: name={{item}} state=present
-  with_items:
-    - telnet
-    - wget
-    - net-tools
-    - bind-utils
-    - connect-proxy
-    - socat
+  yum:
+    name: ['telnet', 'wget', 'net-tools', 'bind-utils', 'connect-proxy', 'socat']
+    state: present
 
 - name: Install editor packages
-  yum: name={{item}} state=present
-  with_items:
-    - vim
-    - tmux
+  yum:
+    name: ['vim', 'tmux']
+    state: present
 
 - name: Install file packages
-  yum: name={{item}} state=present
-  with_items:
-    - dos2unix
-    - jq
-    - zip
-    - unzip
-    - lsof
-    - mlocate
+  yum:
+    name: ['dos2unix', 'jq', 'zip', 'unzip', 'lsof', 'mlocate']
+    state: present
 
 - name: Install pip
-  yum: name={{item}} state=present
-  with_items:
-    - python-pip
+  yum:
+    name: ['python-pip']
+    state: present
 
 - name: Install git packages
-  yum: name={{item}} state=present
-  with_items:
-    - git
-    - git-lfs
+  yum:
+    name: ['git', 'git-lfs']
+    state: present
 
 - name: Define git config
   become: no

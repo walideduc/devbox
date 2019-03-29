@@ -23,7 +23,7 @@ Pour lancer la VM et provisionner l'ensemble de l'écosystème de façon automat
 vagrant up
 ```
 
-Accès à la box : 
+Accès à la box :
 ```bash
 vagrant ssh
 ```
