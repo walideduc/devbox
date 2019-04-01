@@ -88,6 +88,17 @@
       aws_access_key_id = {{ aws.access_key }}
       aws_secret_access_key = {{ aws.secret_access_key }}
 
+- name: Download helm
+  get_url:
+    dest: /tmp/helm-v{{ helm_version }}-linux-amd64.tar.gz
+    url: https://kubernetes-helm.storage.googleapis.com/helm-v{{ helm_version }}-linux-amd64.tar.gz
+
+- name: Install helm
+  shell: |
+      cd /tmp
+      tar -xzf helm-v{{ helm_version }}-linux-amd64.tar.gz
+      mv linux-amd64/helm /usr/local/bin/helm
+
 - name: Set timezone
   timezone:
     name: Europe/Paris

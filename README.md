@@ -41,7 +41,7 @@ vagrant halt
 
 ## Customisation
 
-La customisation de la VM est possible. Elle s'effectue depuis le fichier `provisioning/group_vars/all.yml`.
+La customisation de la VM est possible. Elle s'effectue depuis le fichier `provisioning/group_vars/all.yml` :
 
 La configuration Git de `user.name` et `user.email` :
 ```yaml
@@ -50,7 +50,7 @@ git_config_global:
   - { name: "user.email", value: "email" }
 ```
 
-La configuration des credentials d'accès à AWS :
+La configuration des credentials d'accès à AWS pour le user `root` :
 ```yaml
 aws:
   oat:
@@ -61,6 +61,11 @@ aws:
     role_arn: pro_role_arn
   access_key: aws_access_key
   secret_access_key: aws_secret_access_key
+```
+
+La configuration de la version de helm à installer (à mettre à jour si nécessaire) :
+```yaml
+helm_version: 2.13.1
 ```
 
 Le reste de la customisation peut être effectué dans le fichier `Vagrantfile`.
@@ -75,4 +80,9 @@ aws eks update-kubeconfig --name softwarefactory-oat --role-arn arn:aws:iam::094
 Mise à jour kubeconfig pour PRO :
 ```bash
 aws eks update-kubeconfig --name softwarefactory-pro --role-arn arn:aws:iam::717170762493:role/rol-softfactory-pro-base-wl --profile pro
+```
+
+Initialisation helm client only :
+```bash
+helm init --client-only
 ```
