@@ -1,3 +1,4 @@
+
 main_user: vagrant
 
 proxy:
@@ -10,11 +11,11 @@ https_proxy: '{{ http_proxy }}'
 no_proxy: localhost,127.0.0.1,devbox,.priv.atos.fr,.local
 
 git_config_global:
-  - { name: "user.name",  value: "name" }
-  - { name: "user.email", value: "email" }
+- { name: "user.name",  value: "name" }
+- { name: "user.email", value: "email" }
 
 docker_users:
-  - '{{ main_user }}'
+- '{{ main_user }}'
 
 docker_package: "docker-{{ docker_edition }}-18.06.0.ce-3.el7"
 

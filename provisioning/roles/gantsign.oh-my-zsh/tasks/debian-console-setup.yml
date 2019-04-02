@@ -24,4 +24,4 @@
     state: present
   when: console_setup_file.stat.exists
   notify:
-    - dpkg-reconfigure console-setup
+  - dpkg-reconfigure console-setup

@@ -1,3 +1,4 @@
+# Standards: 0.1
 ---
 galaxy_info:
   author: John Freeman
@@ -6,27 +7,26 @@ galaxy_info:
   license: MIT
   min_ansible_version: 2.5
   platforms:
-    - name: EL
-      versions:
-        - 7
-    - name: Fedora
-      versions:
-        - 28
-    - name: opensuse
-      versions:
-        - 15.0
-    - name: Ubuntu
-      versions:
-        - trusty
-        - xenial
-        - bionic
-    - name: Debian
-      versions:
-        - jessie
-        - stretch
+  - name: EL
+    versions:
+    - 7
+  - name: Fedora
+    versions:
+    - 28
+  - name: opensuse
+    versions:
+    - 15.0
+  - name: Ubuntu
+    versions:
+    - trusty
+    - xenial
+    - bionic
+  - name: Debian
+    versions:
+    - jessie
+    - stretch
   galaxy_tags:
-    - ohmyzsh
-    - zsh
-    - shell
-    - development
-dependencies: []
+  - ohmyzsh
+  - zsh
+  - shell
+  - development

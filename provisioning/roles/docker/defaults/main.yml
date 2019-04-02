@@ -2,6 +2,6 @@
 
 docker_proxy_enabled: '{{ proxy.enabled }}'
 docker_proxy_env:
-  - "HTTP_PROXY={{ http_proxy }}"
-  - "HTTPS_PROXY={{ https_proxy }}"
-  - "NO_PROXY={{ no_proxy }}"
+- "HTTP_PROXY={{ http_proxy }}"
+- "HTTPS_PROXY={{ https_proxy }}"
+- "NO_PROXY={{ no_proxy }}"

@@ -9,8 +9,8 @@ lint:
   name: yamllint
 
 platforms:
-  - name: ansible-role-maven-ubuntu-max
-    image: ubuntu:18.04
+- name: ansible-role-maven-ubuntu-max
+  image: ubuntu:18.04
 
 provisioner:
   name: ansible

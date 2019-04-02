@@ -1,8 +1,8 @@
 ---
 
 git_config_global:
-  - { name: "user.name",  value: "name" }
-  - { name: "user.email", value: "email" }
+- { name: "user.name",  value: "name" }
+- { name: "user.email", value: "email" }
 
 aws:
   oat:

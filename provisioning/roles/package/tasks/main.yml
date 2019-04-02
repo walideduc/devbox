@@ -7,10 +7,10 @@
     option: enabled
     value: 0
   with_items:
-     - base
-     - updates
-     - extras
-     - centosplus
+  - base
+  - updates
+  - extras
+  - centosplus
 
 - name: Remove epel-release.noarch package
   yum:

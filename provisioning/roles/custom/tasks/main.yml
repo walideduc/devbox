@@ -3,11 +3,11 @@
 - name: Define git config
   become: no
   git_config:
-    name="{{ item.name }}"
-    value="{{ item.value }}"
-    scope=global
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    scope: global
   with_items:
-    - '{{ git_config_global }}'
+  - '{{ git_config_global }}'
 
 - name: Create /root/.aws directory
   file:
@@ -23,7 +23,6 @@
       role_arn = {{ aws.oat.role_arn }}
       source_profile = default
       output = json
-      
       [profile pro]
       region = {{ aws.pro.region }}
       role_arn = {{ aws.pro.role_arn }}

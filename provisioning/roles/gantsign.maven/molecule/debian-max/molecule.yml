@@ -9,8 +9,8 @@ lint:
   name: yamllint
 
 platforms:
-  - name: ansible-role-maven-debian-max
-    image: debian:9
+- name: ansible-role-maven-debian-max
+  image: debian:9
 
 provisioner:
   name: ansible

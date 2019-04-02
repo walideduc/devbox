@@ -1,3 +1,4 @@
+# Standards: 0.1
 ---
 dependencies:
 - role: gantsign.maven

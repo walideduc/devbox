@@ -17,7 +17,8 @@
   register: temp_directory
   when: latest_helm_version.stdout != current_helm_version.stdout
 
-- set_fact:
+- name: Get checksum value
+  set_fact:
     checksum_value: "{{ lookup('url', '{{ download_url }}helm-{{ latest_helm_version.stdout }}-linux-amd64.tar.gz.sha256') }}"
   when: latest_helm_version.stdout != current_helm_version.stdout
 

@@ -9,8 +9,8 @@ lint:
   name: yamllint
 
 platforms:
-  - name: ansible-role-maven-fedora
-    image: fedora:28
+- name: ansible-role-maven-fedora
+  image: fedora:28
 
 provisioner:
   name: ansible

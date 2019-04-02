@@ -1,22 +1,23 @@
+# Standards: 0.1
 - hosts: all
   become: yes
   roles:
-    - role: package
-    - role: helm
-    - role: custom
-    - role: gantsign.oh-my-zsh
-      vars:
-        oh_my_zsh_theme: agnoster
-        oh_my_zsh_plugins:
-          - yum
-          - git
-          - docker
-          - docker-compose
-          - kubectl
-          - helm
-          - terraform
-          - mvn
-        users:
-          - username: '{{ main_user }}'
-          - username: root
-    - role: docker
+  - role: package
+  - role: helm
+  - role: custom
+  - role: gantsign.oh-my-zsh
+    vars:
+      oh_my_zsh_theme: agnoster
+      oh_my_zsh_plugins:
+      - yum
+      - git
+      - docker
+      - docker-compose
+      - kubectl
+      - helm
+      - terraform
+      - mvn
+      users:
+      - username: '{{ main_user }}'
+      - username: root
+  - role: docker

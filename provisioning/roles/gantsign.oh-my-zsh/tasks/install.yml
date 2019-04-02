@@ -5,14 +5,14 @@
     name: '{{ item }}'
     state: present
   with_items:
-    - git
-    - zsh
+  - git
+  - zsh
 
 - name: clone oh-my-zsh for users
   tags:
-    # Suppress warning: [ANSIBLE0006] git used in place of git module
-    # Git module doesn't allow us to set `core.autocrlf=input`.
-    - skip_ansible_lint
+  # Suppress warning: [ANSIBLE0006] git used in place of git module
+  # Git module doesn't allow us to set `core.autocrlf=input`.
+  - skip_ansible_lint
   become: yes
   become_user: '{{ item.username }}'
   # core.autocrlf=input prevents https://github.com/robbyrussell/oh-my-zsh/issues/4402
