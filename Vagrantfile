@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
       config.proxy.enabled = { docker: false }
       config.proxy.http     = "http://proxy.priv.atos.fr:3128/"
       config.proxy.https    = "http://proxy.priv.atos.fr:3128/"
-      config.proxy.no_proxy = "localhost,127.0.0.1,devbox,10.0.2.15,.priv.atos.fr,.local"
+      config.proxy.no_proxy = "localhost,127.0.0.1,devbox,.priv.atos.fr,.local"
 
     end
 
@@ -34,7 +34,6 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "provisioning/playbook.yml"
-      ansible.galaxy_role_file = "provisioning/requirements.yml"
     end
 
   end
