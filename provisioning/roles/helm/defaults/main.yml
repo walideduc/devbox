@@ -1,0 +1,5 @@
+---
+
+latest_release_url: https://github.com/helm/helm/releases/latest
+
+download_url: https://kubernetes-helm.storage.googleapis.com/

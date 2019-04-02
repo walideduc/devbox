@@ -63,21 +63,16 @@ aws:
   secret_access_key: aws_secret_access_key
 ```
 
-La configuration de la version de helm à installer (à mettre à jour si nécessaire) :
-```yaml
-helm_version: 2.13.1
-```
-
 Le reste de la customisation peut être effectué dans le fichier `Vagrantfile`.
 
 ## Commandes
 
-Mise à jour kubeconfig pour OAT :
+Mise à jour kubeconfig pour OAT (user `root`) :
 ```bash
 aws eks update-kubeconfig --name softwarefactory-oat --role-arn arn:aws:iam::094242746997:role/rol-softfactory-oat-base-wl --profile oat
 ```
 
-Mise à jour kubeconfig pour PRO :
+Mise à jour kubeconfig pour PRO (user `root`) :
 ```bash
 aws eks update-kubeconfig --name softwarefactory-pro --role-arn arn:aws:iam::717170762493:role/rol-softfactory-pro-base-wl --profile pro
 ```

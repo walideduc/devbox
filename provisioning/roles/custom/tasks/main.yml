@@ -1,0 +1,43 @@
+---
+
+- name: Define git config
+  become: no
+  git_config:
+    name="{{ item.name }}"
+    value="{{ item.value }}"
+    scope=global
+  with_items:
+    - '{{ git_config_global }}'
+
+- name: Create /root/.aws directory
+  file:
+    path: /root/.aws
+    state: directory
+
+- name: Create /root/.aws/config
+  copy:
+    dest: "/root/.aws/config"
+    content: |
+      [profile oat]
+      region = {{ aws.oat.region }}
+      role_arn = {{ aws.oat.role_arn }}
+      source_profile = default
+      output = json
+      
+      [profile pro]
+      region = {{ aws.pro.region }}
+      role_arn = {{ aws.pro.role_arn }}
+      source_profile = default
+      output = json
+
+- name: Create /root/.aws/credentials
+  copy:
+    dest: "/root/.aws/credentials"
+    content: |
+      [default]
+      aws_access_key_id = {{ aws.access_key }}
+      aws_secret_access_key = {{ aws.secret_access_key }}
+
+- name: Set timezone
+  timezone:
+    name: Europe/Paris

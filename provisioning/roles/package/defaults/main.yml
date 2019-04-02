@@ -1,0 +1,25 @@
+---
+
+wl_rpms_version: 1.0-74
+
+gpg_key: http://mirrors.atosworldline.com/private/centos/awl/RPM-GPG-KEY-awl
+
+packages:
+  - telnet
+  - wget
+  - net-tools
+  - bind-utils
+  - connect-proxy
+  - socat
+  - vim
+  - tmux
+  - dos2unix
+  - jq
+  - zip
+  - unzip
+  - lsof
+  - mlocate
+  - python-pip
+  - git
+  - git-lfs
+  - kubectl
