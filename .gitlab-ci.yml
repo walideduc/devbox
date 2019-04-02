@@ -1,0 +1,9 @@
+---
+stages:
+- review
+
+review:
+  stage: review
+  image: registry.gitlab.worldline.tech/accorhotels/software-factory/docker-images/ansible:latest
+  script:
+  - cd provisioning && git ls-files | grep -v "travis\|molecule" | grep .yml | xargs ansible-review
