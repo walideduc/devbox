@@ -73,6 +73,11 @@ aws:
   secret_access_key: aws_secret_access_key
 ```
 
+La version aws-iam-authenticator (à mettre à jour si besoin) :
+```yaml
+aws_iam_authenticator_version: 1.12.7/2019-03-27
+```
+
 Le reste de la customisation peut être effectué dans le fichier `Vagrantfile`.
 
 ## Commandes

@@ -4,6 +4,7 @@
   roles:
   - role: package
   - role: helm
+  - role: aws-iam-authenticator
   - role: custom
   - role: gantsign.oh-my-zsh
     vars:

@@ -10,11 +10,13 @@
   - '{{ git_config_global }}'
 
 - name: Create /home/vagrant/.aws directory
+  become: no
   file:
     path: /home/vagrant/.aws
     state: directory
 
 - name: Create /home/vagrant/.aws/config
+  become: no
   copy:
     dest: "/home/vagrant/.aws/config"
     content: |
@@ -35,6 +37,7 @@
       output = json
 
 - name: Create /home/vagrant/.aws/credentials
+  become: no
   copy:
     dest: "/home/vagrant/.aws/credentials"
     content: |
