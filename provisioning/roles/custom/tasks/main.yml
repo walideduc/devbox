@@ -18,6 +18,11 @@
   copy:
     dest: "/root/.aws/config"
     content: |
+      [profile dev]
+      region = {{ aws.dev.region }}
+      role_arn = {{ aws.dev.role_arn }}
+      source_profile = default
+      output = json
       [profile oat]
       region = {{ aws.oat.region }}
       role_arn = {{ aws.oat.role_arn }}

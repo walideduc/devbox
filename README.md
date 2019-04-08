@@ -13,6 +13,13 @@ Un dossier partagé est automatiquement provisionné entre Windows, sur `$(pwd)`
 1. Installer `Vagrant` : https://www.vagrantup.com/downloads.html
 2. Installer `VirtualBox` : https://www.virtualbox.org/wiki/Downloads
 3. Cette VM nécessite `4Go RAM` et `4 cpus` pour fonctionner
+4. Configurer le proxy :
+```cmd
+set HTTPS_PROXY=http://proxy.priv.atos.fr:3128
+set HTTP_PROXY=http://proxy.priv.atos.fr:3128
+set VAGRANT_HTTPS_PROXY=http://proxy.priv.atos.fr:3128
+set VAGRANT_HTTP_PROXY=http://proxy.priv.atos.fr:3128
+```
 
 `Vagrant` est un outil permettant d'abstraire les APIs des différents providers de virtualisation (HyperV / VMWare / KVM / VirtualBox) afin de spawn des VMs et de les provisionner.
 
@@ -53,6 +60,9 @@ git_config_global:
 La configuration des credentials d'accès à AWS pour le user `root` :
 ```yaml
 aws:
+  dev:
+    region: dev_region
+    role_arn: dev_role_arn
   oat:
     region: oat_region
     role_arn: oat_role_arn

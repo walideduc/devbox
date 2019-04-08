@@ -20,6 +20,9 @@ docker_users:
 docker_package: "docker-{{ docker_edition }}-18.06.0.ce-3.el7"
 
 aws:
+  dev:
+    region: dev_region
+    role_arn: dev_role_arn
   oat:
     region: oat_region
     role_arn: oat_role_arn

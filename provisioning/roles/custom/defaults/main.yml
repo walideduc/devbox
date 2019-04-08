@@ -5,6 +5,9 @@ git_config_global:
 - { name: "user.email", value: "email" }
 
 aws:
+  dev:
+    region: dev_region
+    role_arn: dev_role_arn
   oat:
     region: oat_region
     role_arn: oat_role_arn
