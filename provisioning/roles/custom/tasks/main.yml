@@ -9,14 +9,14 @@
   with_items:
   - '{{ git_config_global }}'
 
-- name: Create /root/.aws directory
+- name: Create /home/vagrant/.aws directory
   file:
-    path: /root/.aws
+    path: /home/vagrant/.aws
     state: directory
 
-- name: Create /root/.aws/config
+- name: Create /home/vagrant/.aws/config
   copy:
-    dest: "/root/.aws/config"
+    dest: "/home/vagrant/.aws/config"
     content: |
       [profile dev]
       region = {{ aws.dev.region }}
@@ -34,9 +34,9 @@
       source_profile = default
       output = json
 
-- name: Create /root/.aws/credentials
+- name: Create /home/vagrant/.aws/credentials
   copy:
-    dest: "/root/.aws/credentials"
+    dest: "/home/vagrant/.aws/credentials"
     content: |
       [default]
       aws_access_key_id = {{ aws.access_key }}

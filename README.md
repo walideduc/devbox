@@ -57,7 +57,7 @@ git_config_global:
   - { name: "user.email", value: "email" }
 ```
 
-La configuration des credentials d'accès à AWS pour le user `root` :
+La configuration des credentials d'accès à AWS :
 ```yaml
 aws:
   dev:
@@ -77,12 +77,17 @@ Le reste de la customisation peut être effectué dans le fichier `Vagrantfile`.
 
 ## Commandes
 
-Mise à jour kubeconfig pour OAT (user `root`) :
+Mise à jour kubeconfig pour DEV :
+```bash
+aws eks update-kubeconfig --name softwarefactory-dev --role-arn arn:aws:iam::176806391229:role/rol-softfactory-dev-base-wl --profile dev
+```
+
+Mise à jour kubeconfig pour OAT :
 ```bash
 aws eks update-kubeconfig --name softwarefactory-oat --role-arn arn:aws:iam::094242746997:role/rol-softfactory-oat-base-wl --profile oat
 ```
 
-Mise à jour kubeconfig pour PRO (user `root`) :
+Mise à jour kubeconfig pour PRO :
 ```bash
 aws eks update-kubeconfig --name softwarefactory-pro --role-arn arn:aws:iam::717170762493:role/rol-softfactory-pro-base-wl --profile pro
 ```
