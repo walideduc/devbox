@@ -78,6 +78,11 @@ La version aws-iam-authenticator (à mettre à jour si besoin) :
 aws_iam_authenticator_version: 1.12.7/2019-03-27
 ```
 
+La version de helm (à mettre à jour si besoin) :
+```yaml
+helm_version: v2.13.1
+```
+
 Le reste de la customisation peut être effectué dans le fichier `Vagrantfile`.
 
 ## Commandes
