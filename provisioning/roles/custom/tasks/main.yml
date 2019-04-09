@@ -9,15 +9,22 @@
   with_items:
   - '{{ git_config_global }}'
 
-- name: Create /root/.aws directory
+- name: Create /home/vagrant/.aws directory
+  become: no
   file:
-    path: /root/.aws
+    path: /home/vagrant/.aws
     state: directory
 
-- name: Create /root/.aws/config
+- name: Create /home/vagrant/.aws/config
+  become: no
   copy:
-    dest: "/root/.aws/config"
+    dest: "/home/vagrant/.aws/config"
     content: |
+      [profile dev]
+      region = {{ aws.dev.region }}
+      role_arn = {{ aws.dev.role_arn }}
+      source_profile = default
+      output = json
       [profile oat]
       region = {{ aws.oat.region }}
       role_arn = {{ aws.oat.role_arn }}
@@ -29,13 +36,21 @@
       source_profile = default
       output = json
 
-- name: Create /root/.aws/credentials
+- name: Create /home/vagrant/.aws/credentials
+  become: no
   copy:
-    dest: "/root/.aws/credentials"
+    dest: "/home/vagrant/.aws/credentials"
     content: |
       [default]
       aws_access_key_id = {{ aws.access_key }}
       aws_secret_access_key = {{ aws.secret_access_key }}
+
+- name: Create kubenv command
+  become: no
+  copy:
+    dest: "/usr/local/bin/kubenv"
+    src: kubenv.sh
+    mode: 0755
 
 - name: Set timezone
   timezone:

@@ -1,11 +1,5 @@
 ---
 
-- name: Get latest version of helm
-  shell: curl -Ls -o /dev/null -w %{url_effective} {{ latest_release_url }} | grep -oE "[^/]+$"
-  args:
-    warn: false
-  register: latest_helm_version
-
 - name: Get current version of helm
   shell: /usr/local/bin/helm version -c | grep '^Client' | cut -d'"' -f2
   register: current_helm_version
@@ -15,27 +9,27 @@
     state: directory
     suffix: helm
   register: temp_directory
-  when: latest_helm_version.stdout != current_helm_version.stdout
+  when: current_helm_version.stdout != helm_version
 
 - name: Get checksum value
   set_fact:
-    checksum_value: "{{ lookup('url', '{{ download_url }}helm-{{ latest_helm_version.stdout }}-linux-amd64.tar.gz.sha256') }}"
-  when: latest_helm_version.stdout != current_helm_version.stdout
+    checksum_value: "{{ lookup('url', '{{ download_url }}.sha256') }}"
+  when: current_helm_version.stdout != helm_version
 
 - name: Download helm
   get_url:
-    dest: "{{ temp_directory.path }}/helm-{{ latest_helm_version.stdout }}-linux-amd64.tar.gz"
-    url: "{{ download_url }}helm-{{ latest_helm_version.stdout }}-linux-amd64.tar.gz"
+    dest: "{{ temp_directory.path }}/helm-{{ helm_version }}-linux-amd64.tar.gz"
+    url: "{{ download_url }}"
     checksum: "sha256:{{ checksum_value }}"
-  when: latest_helm_version.stdout != current_helm_version.stdout
+  when: current_helm_version.stdout != helm_version
 
 - name: Unarchive helm
   unarchive:
     dest: "{{ temp_directory.path }}"
-    src: "{{ temp_directory.path }}/helm-{{ latest_helm_version.stdout }}-linux-amd64.tar.gz"
+    src: "{{ temp_directory.path }}/helm-{{ helm_version }}-linux-amd64.tar.gz"
     remote_src: yes
-  when: latest_helm_version.stdout != current_helm_version.stdout
+  when: current_helm_version.stdout != helm_version
 
 - name: Install helm
   command: mv {{ temp_directory.path }}/linux-amd64/helm /usr/local/bin/helm
-  when: latest_helm_version.stdout != current_helm_version.stdout
+  when: current_helm_version.stdout != helm_version

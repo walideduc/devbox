@@ -1,0 +1,13 @@
+---
+
+- name: Get checksum value
+  set_fact:
+    checksum_value: "{{ lookup('url', '{{ download_url }}aws-iam-authenticator.sha256').split() }}"
+
+- name: Download aws-iam-authenticator
+  get_url:
+    dest: "/usr/local/bin/aws-iam-authenticator"
+    url: "{{ download_url }}aws-iam-authenticator"
+    checksum: "sha256:{{ checksum_value[0] }}"
+    mode: 0755
+    force: no

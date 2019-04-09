@@ -1,0 +1,3 @@
+---
+
+download_url: https://amazon-eks.s3-us-west-2.amazonaws.com/{{ aws_iam_authenticator_version }}/bin/linux/amd64/
