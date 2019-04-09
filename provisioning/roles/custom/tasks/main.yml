@@ -45,6 +45,13 @@
       aws_access_key_id = {{ aws.access_key }}
       aws_secret_access_key = {{ aws.secret_access_key }}
 
+- name: Create kubenv command
+  become: no
+  copy:
+    dest: "/usr/local/bin/kubenv"
+    src: kubenv.sh
+    mode: 0755
+
 - name: Set timezone
   timezone:
     name: Europe/Paris

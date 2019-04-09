@@ -102,6 +102,13 @@ Mise à jour kubeconfig pour PRO :
 aws eks update-kubeconfig --name softwarefactory-pro --role-arn arn:aws:iam::717170762493:role/rol-softfactory-pro-base-wl --profile pro
 ```
 
+Changer de contexte kubectl :
+```bash
+kubenv dev
+kubenv oat
+kubenv pro
+```
+
 Initialisation helm client only :
 ```bash
 helm init --client-only
