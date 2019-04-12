@@ -2,9 +2,9 @@
 # SIMPLIFY THE SWITCH BETWEEN ENVS
 
 case $1 in
-  pro) CHAIN="arn:aws:eks:eu-west-1:717170762493:cluster/softwarefactory-pro";;
-  dev) CHAIN="arn:aws:eks:eu-west-1:176806391229:cluster/softwarefactory-dev";;
-  oat) CHAIN="arn:aws:eks:eu-west-1:094242746997:cluster/softwarefactory-oat";;
+  pro) CHAIN="%kubenv_pro%";;
+  dev) CHAIN="%kubenv_dev%";;
+  oat) CHAIN="%kubenv_oat%";;
 esac
 
 if [ "$CHAIN" != "" ]
