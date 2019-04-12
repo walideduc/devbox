@@ -51,6 +51,24 @@
     src: kubenv.sh
     mode: 0755
 
+- name: Replace role dev
+  replace:
+    path: "/usr/local/bin/kubenv"
+    regexp: "%kubenv_dev%"
+    replace: "{{ kubenv.dev }}"
+
+- name: Replace role oat
+  replace:
+    path: "/usr/local/bin/kubenv"
+    regexp: "%kubenv_oat%"
+    replace: "{{ kubenv.oat }}"
+
+- name: Replace role pro
+  replace:
+    path: "/usr/local/bin/kubenv"
+    regexp: "%kubenv_pro%"
+    replace: "{{ kubenv.pro }}"
+
 - name: Set timezone
   timezone:
     name: Europe/Paris

@@ -32,6 +32,11 @@ aws:
   access_key: aws_access_key
   secret_access_key: aws_secret_access_key
 
+kubenv:
+  dev: kubenv_dev
+  oat: kubenv_oat
+  pro: kubenv_pro
+
 aws_iam_authenticator_version: 1.12.7/2019-03-27
 
 helm_version: v2.13.1
