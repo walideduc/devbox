@@ -25,6 +25,10 @@ set VAGRANT_HTTP_PROXY=http://proxy.priv.atos.fr:3128
 
 ## Lancement
 
+Pensez à [configurer](#Configuration) la VM avant de la lancer !
+
+---
+
 Pour lancer la VM et provisionner l'ensemble de l'écosystème de façon automatique il faut cloner ce repo, et à la racine, lancer la ligne de commande suivante :
 ```bash
 vagrant up
@@ -46,9 +50,9 @@ Pour éteindre la VM il faut lancer la ligne de commande suivante :
 vagrant halt
 ```
 
-## Customisation
+## Configuration
 
-La customisation de la VM est possible. Elle s'effectue depuis le fichier `provisioning/group_vars/all.yml` :
+La configuration de la VM est possible. Elle s'effectue depuis le fichier `provisioning/group_vars/all.yml` :
 
 La configuration Git de `user.name` et `user.email` :
 ```yaml
@@ -91,6 +95,25 @@ La version de helm (à mettre à jour si besoin) :
 helm_version: v2.13.1
 ```
 
+La configuration du tunnel :
+```yaml
+tunnel:
+  hostname: hostname
+  user: tunnel_user
+  # /home/vagrant/.ssh/config -> ligne à ajouter
+  local_forward:
+    - line1
+    - line2
+    - line3
+  key_name: key_name.pem
+  # /etc/hosts -> ligne à ajouter
+  hosts:
+    - line1
+    - line2
+    - line3
+```
+Le fichier `provisioning/key_name.pem` doit contenir la clé pour le tunnel.
+
 Le reste de la customisation peut être effectué dans le fichier `Vagrantfile`.
 
 ## Commandes
@@ -121,3 +144,16 @@ Initialisation helm client only :
 ```bash
 helm init --client-only
 ```
+
+Lancement du double tunnel:
+```bash
+sudo su
+ssh gateway-ah
+```
+
+## TODO
+
+* Installation terraform
+* Installation plugin vim terraform
+* Déploiement Kubespray local
+* Configuration .m2/settings.xml
