@@ -40,3 +40,16 @@ kubenv:
 aws_iam_authenticator_version: 1.12.7/2019-03-27
 
 helm_version: v2.13.1
+
+tunnel:
+  hostname: hostname
+  user: tunnel_user
+  local_forward:
+  - line1
+  - line2
+  - line3
+  key_name: key_name.pem
+  hosts:
+  - line1
+  - line2
+  - line3

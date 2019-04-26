@@ -9,42 +9,6 @@
   with_items:
   - '{{ git_config_global }}'
 
-- name: Create /home/vagrant/.aws directory
-  become: no
-  file:
-    path: /home/vagrant/.aws
-    state: directory
-
-- name: Create /home/vagrant/.aws/config
-  become: no
-  copy:
-    dest: "/home/vagrant/.aws/config"
-    content: |
-      [profile dev]
-      region = {{ aws.dev.region }}
-      role_arn = {{ aws.dev.role_arn }}
-      source_profile = default
-      output = json
-      [profile oat]
-      region = {{ aws.oat.region }}
-      role_arn = {{ aws.oat.role_arn }}
-      source_profile = default
-      output = json
-      [profile pro]
-      region = {{ aws.pro.region }}
-      role_arn = {{ aws.pro.role_arn }}
-      source_profile = default
-      output = json
-
-- name: Create /home/vagrant/.aws/credentials
-  become: no
-  copy:
-    dest: "/home/vagrant/.aws/credentials"
-    content: |
-      [default]
-      aws_access_key_id = {{ aws.access_key }}
-      aws_secret_access_key = {{ aws.secret_access_key }}
-
 - name: Create kubenv command
   copy:
     dest: "/usr/local/bin/kubenv"

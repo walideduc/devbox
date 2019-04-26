@@ -1,3 +1,5 @@
 ---
 
+helm_version: v2.13.1
+
 download_url: https://kubernetes-helm.storage.googleapis.com/helm-{{ helm_version }}-linux-amd64.tar.gz
