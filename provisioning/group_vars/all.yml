@@ -53,3 +53,5 @@ tunnel:
   - line1
   - line2
   - line3
+
+terraform_version: 0.11.13

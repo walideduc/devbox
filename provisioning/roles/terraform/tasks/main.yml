@@ -1,0 +1,41 @@
+---
+
+- name: Get current version of terraform
+  shell: /usr/local/bin/terraform version | cut -d 'v' -f 2
+  register: current_terraform_version
+
+- name: Create temp directory
+  tempfile:
+    state: directory
+    suffix: terraform
+  register: temp_directory
+  when: current_terraform_version.stdout != terraform_version
+
+- name: Download checksum
+  get_url:
+    dest: "{{ temp_directory.path }}/terraform_0.11.13_SHA256SUMS"
+    url: "{{ terraform.download_url }}_SHA256SUMS"
+  when: current_terraform_version.stdout != terraform_version
+
+- name: Get checksum value
+  shell: cat {{ temp_directory.path }}/terraform_0.11.13_SHA256SUMS | grep linux_amd64 | cut -d ' ' -f 1
+  register: checksum
+  when: current_terraform_version.stdout != terraform_version
+
+- name: Download terraform
+  get_url:
+    dest: "{{ temp_directory.path }}/terraform_0.11.13_linux_amd64.zip"
+    url: "{{ terraform.download_url }}_linux_amd64.zip"
+    checksum: "sha256:{{ checksum.stdout }}"
+  when: current_terraform_version.stdout != terraform_version
+
+- name: Unarchive terraform
+  unarchive:
+    dest: "{{ temp_directory.path }}"
+    src: "{{ temp_directory.path }}/terraform_0.11.13_linux_amd64.zip"
+    remote_src: yes
+  when: current_terraform_version.stdout != terraform_version
+
+- name: Install terraform
+  command: mv {{ temp_directory.path }}/terraform /usr/local/bin/terraform
+  when: current_terraform_version.stdout != terraform_version

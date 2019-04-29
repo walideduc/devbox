@@ -1,0 +1,7 @@
+---
+
+terraform_version: 0.11.13
+
+terraform:
+  download_url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}
+  

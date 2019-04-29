@@ -114,6 +114,11 @@ tunnel:
 ```
 Le fichier `provisioning/key_name.pem` doit contenir la clé pour le tunnel.
 
+La version de terraform (à mettre à jour si besoin) :
+```yaml
+terraform_version: 0.11.13
+```
+
 Le reste de la customisation peut être effectué dans le fichier `Vagrantfile`.
 
 ## Commandes
@@ -153,7 +158,6 @@ ssh gateway-ah
 
 ## TODO
 
-* Installation terraform
 * Installation plugin vim terraform
 * Déploiement Kubespray local
 * Configuration .m2/settings.xml
