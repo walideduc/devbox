@@ -55,3 +55,5 @@ tunnel:
   - line3
 
 terraform_version: 0.11.13
+
+vim_plugins:
