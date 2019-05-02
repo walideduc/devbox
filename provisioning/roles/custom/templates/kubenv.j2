@@ -2,9 +2,11 @@
 # SIMPLIFY THE SWITCH BETWEEN ENVS
 
 case $1 in
-  pro) CHAIN="%kubenv_pro%";;
-  dev) CHAIN="%kubenv_dev%";;
-  oat) CHAIN="%kubenv_oat%";;
+{% if kubenv %}
+{% for command in kubenv %}
+  {{ command }}) CHAIN="{{ kubenv[command] }}";;
+{% endfor %}
+{% endif %}
 esac
 
 if [ "$CHAIN" != "" ]

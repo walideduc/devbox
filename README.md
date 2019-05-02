@@ -61,6 +61,21 @@ git_config_global:
   - { name: "user.email", value: "email" }
 ```
 
+La version aws-iam-authenticator (à mettre à jour si besoin) :
+```yaml
+aws_iam_authenticator_version: 1.12.7/2019-03-27
+```
+
+La version de helm (à mettre à jour si besoin) :
+```yaml
+helm_version: v2.13.1
+```
+
+La version de terraform (à mettre à jour si besoin) :
+```yaml
+terraform_version: 0.11.13
+```
+
 La configuration des credentials et profiles d'accès à AWS :
 ```yaml
 aws:
@@ -81,20 +96,11 @@ aws:
 La configuration des arn pour la commande `kubenv` :
 ```yaml
 kubenv:
-  dev: kubenv_dev
-  oat: kubenv_oat
-  pro: kubenv_pro
+  command1: arn1
+  command2: arn2
+  ...
 ```
-
-La version aws-iam-authenticator (à mettre à jour si besoin) :
-```yaml
-aws_iam_authenticator_version: 1.12.7/2019-03-27
-```
-
-La version de helm (à mettre à jour si besoin) :
-```yaml
-helm_version: v2.13.1
-```
+Utiliser la commande `kubenv command1` pour utiliser le context kubectl `arn1`.
 
 La configuration du tunnel :
 ```yaml
@@ -114,11 +120,6 @@ tunnel:
     - line3
 ```
 Le fichier `provisioning/key_name.pem` doit contenir la clé pour le tunnel.
-
-La version de terraform (à mettre à jour si besoin) :
-```yaml
-terraform_version: 0.11.13
-```
 
 Plugins vim à ajouter dans `~/.vimrc` (via Vundle) :
 ```yaml
@@ -145,13 +146,6 @@ aws eks update-kubeconfig --name softwarefactory-oat --role-arn arn:aws:iam::094
 Mise à jour kubeconfig pour PRO :
 ```bash
 aws eks update-kubeconfig --name softwarefactory-pro --role-arn arn:aws:iam::717170762493:role/rol-softfactory-pro-base-wl --profile pro
-```
-
-Changer de contexte kubectl :
-```bash
-kubenv dev
-kubenv oat
-kubenv pro
 ```
 
 Initialisation helm client only :

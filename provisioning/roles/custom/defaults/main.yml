@@ -5,6 +5,3 @@ git_config_global:
 - { name: "user.email", value: "email" }
 
 kubenv:
-  dev: kubenv_dev
-  oat: kubenv_oat
-  pro: kubenv_pro
