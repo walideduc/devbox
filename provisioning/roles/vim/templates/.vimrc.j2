@@ -13,6 +13,11 @@ Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " Plugins :
+{% if vim_plugins %}
+{% for item in vim_plugins %}
+{{ item }}
+{% endfor %}
+{% endif %}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
