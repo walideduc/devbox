@@ -61,18 +61,19 @@ git_config_global:
   - { name: "user.email", value: "email" }
 ```
 
-La configuration des credentials d'accès à AWS :
+La configuration des credentials et profiles d'accès à AWS :
 ```yaml
 aws:
-  dev:
-    region: dev_region
-    role_arn: dev_role_arn
-  oat:
-    region: oat_region
-    role_arn: oat_role_arn
-  pro:
-    region: pro_region
-    role_arn: pro_role_arn
+  profiles:
+    profile_name:
+      properties:
+        region: region0
+        role_arn: role_arn0
+        source_profile: source_profile0
+        output: output0
+    profile_name1:
+      properties:
+      ...
   access_key: aws_access_key
   secret_access_key: aws_secret_access_key
 ```

@@ -20,30 +20,12 @@
 
 - name: Create /home/vagrant/.aws/config
   become: no
-  copy:
-    dest: "/home/vagrant/.aws/config"
-    content: |
-      [profile dev]
-      region = {{ aws.dev.region }}
-      role_arn = {{ aws.dev.role_arn }}
-      source_profile = default
-      output = json
-      [profile oat]
-      region = {{ aws.oat.region }}
-      role_arn = {{ aws.oat.role_arn }}
-      source_profile = default
-      output = json
-      [profile pro]
-      region = {{ aws.pro.region }}
-      role_arn = {{ aws.pro.role_arn }}
-      source_profile = default
-      output = json
+  template:
+    dest: /home/vagrant/.aws/config
+    src: config.j2
 
 - name: Create /home/vagrant/.aws/credentials
   become: no
-  copy:
-    dest: "/home/vagrant/.aws/credentials"
-    content: |
-      [default]
-      aws_access_key_id = {{ aws.access_key }}
-      aws_secret_access_key = {{ aws.secret_access_key }}
+  template:
+    dest: /home/vagrant/.aws/credentials
+    src: credentials.j2
