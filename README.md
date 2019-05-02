@@ -119,6 +119,13 @@ La version de terraform (à mettre à jour si besoin) :
 terraform_version: 0.11.13
 ```
 
+Plugins vim à ajouter dans `~/vimrc` (via Vundle) :
+```yaml
+vim_plugins:
+- plugin
+- plugin
+```
+
 Le reste de la customisation peut être effectué dans le fichier `Vagrantfile`.
 
 ## Commandes
@@ -158,6 +165,5 @@ ssh gateway-ah
 
 ## TODO
 
-* Installation plugin vim terraform
 * Déploiement Kubespray local
 * Configuration .m2/settings.xml
