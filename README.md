@@ -104,22 +104,39 @@ Utiliser la commande `kubenv command1` pour utiliser le context kubectl `arn1`.
 
 La configuration du tunnel :
 ```yaml
-tunnel:
+tunnels:
+- host: host
   hostname: hostname
   user: tunnel_user
-  # /home/vagrant/.ssh/config -> ligne à ajouter
   local_forward:
-    - line1
-    - line2
-    - line3
+  - line1
+  - line2
+  - line3
+  ...
   key_name: key_name.pem
-  # /etc/hosts -> ligne à ajouter
-  hosts:
-    - line1
-    - line2
-    - line3
+- host: host2
+  hostname: hostname2
+  ...
 ```
-Le fichier `provisioning/key_name.pem` doit contenir la clé pour le tunnel.
+Vos clés ssh doivent être présentes dans `/provisioning/role/tunnel/files`.
+Lancement du tunnel :
+```bash
+# Tunnel host
+sudo su
+ssh host
+# Tunnel host2
+sudo su
+ssh host2
+```
+
+La configuration du fichier `etc/hosts` :
+```yaml
+hosts_file:
+- line1
+- line2
+- line3
+...
+```
 
 Plugins vim à ajouter dans `~/.vimrc` (via Vundle) :
 ```yaml
@@ -151,12 +168,6 @@ aws eks update-kubeconfig --name softwarefactory-pro --role-arn arn:aws:iam::717
 Initialisation helm client only :
 ```bash
 helm init --client-only
-```
-
-Lancement du double tunnel:
-```bash
-sudo su
-ssh gateway-ah
 ```
 
 ## TODO

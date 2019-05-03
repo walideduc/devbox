@@ -1,14 +1,5 @@
 ---
 
-tunnel:
-  hostname: hostname
-  user: tunnel_user
-  local_forward:
-  - line1
-  - line2
-  - line3
-  key_name: key_name.pem
-  hosts:
-  - line1
-  - line2
-  - line3
+tunnels:
+
+hosts_file:

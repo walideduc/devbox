@@ -5,30 +5,22 @@
     path: /root/.ssh
     state: directory
 
-- name: Add /root/.ssh/{{ tunnel.key_name }}
+- name: Add ssh keys
   copy:
-    dest: "/root/.ssh/{{ tunnel.key_name }}"
-    src: "{{ tunnel.key_name }}"
+    dest: "/root/.ssh/{{ item.key_name }}"
+    src: "{{ item.key_name }}"
     mode: 0600
+  with_items: "{{ tunnels }}"
+  when: tunnels
 
 - name: Create /root/.ssh/config
-  copy:
-    dest: "/root/.ssh/config"
-    content: |
-      Host gateway-ah
-      Hostname {{ tunnel.hostname }}
-      User {{ tunnel.user }}
-      IdentityFile /root/.ssh/{{ tunnel.key_name }}
-      ProxyCommand connect-proxy -H {{ proxy.host }}:{{ proxy.port }} %h %p
-
-- name: Add LocalForward to /root/.ssh/config
-  lineinfile:
-    path: "/root/.ssh/config"
-    line: "{{ item }}"
-  with_items: "{{ tunnel.local_forward }}"
+  template:
+    dest: /root/.ssh/config
+    src: config.j2
 
 - name: Add host to /etc/hosts
   lineinfile:
     path: "/etc/hosts"
     line: "{{ item }}"
-  with_items: "{{ tunnel.hosts }}"
+  with_items: "{{ hosts_file }}"
+  when: hosts_file
