@@ -1,0 +1,10 @@
+{% if aws.profiles %}
+{% for profile in aws.profiles %}
+[profile {{ profile }}]
+{% if aws.profiles[profile].properties %}
+{% for property in aws.profiles[profile].properties %}
+{{ property }} = {{ aws.profiles[profile].properties[property] }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endif %}

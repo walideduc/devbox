@@ -61,30 +61,6 @@ git_config_global:
   - { name: "user.email", value: "email" }
 ```
 
-La configuration des credentials d'accès à AWS :
-```yaml
-aws:
-  dev:
-    region: dev_region
-    role_arn: dev_role_arn
-  oat:
-    region: oat_region
-    role_arn: oat_role_arn
-  pro:
-    region: pro_region
-    role_arn: pro_role_arn
-  access_key: aws_access_key
-  secret_access_key: aws_secret_access_key
-```
-
-La configuration des arn pour la commande `kubenv` :
-```yaml
-kubenv:
-  dev: kubenv_dev
-  oat: kubenv_oat
-  pro: kubenv_pro
-```
-
 La version aws-iam-authenticator (à mettre à jour si besoin) :
 ```yaml
 aws_iam_authenticator_version: 1.12.7/2019-03-27
@@ -95,35 +71,79 @@ La version de helm (à mettre à jour si besoin) :
 helm_version: v2.13.1
 ```
 
-La configuration du tunnel :
-```yaml
-tunnel:
-  hostname: hostname
-  user: tunnel_user
-  # /home/vagrant/.ssh/config -> ligne à ajouter
-  local_forward:
-    - line1
-    - line2
-    - line3
-  key_name: key_name.pem
-  # /etc/hosts -> ligne à ajouter
-  hosts:
-    - line1
-    - line2
-    - line3
-```
-Le fichier `provisioning/key_name.pem` doit contenir la clé pour le tunnel.
-
 La version de terraform (à mettre à jour si besoin) :
 ```yaml
 terraform_version: 0.11.13
 ```
 
-Plugins vim à ajouter dans `~/vimrc` (via Vundle) :
+La configuration des credentials et profiles d'accès à AWS :
+```yaml
+aws:
+  profiles:
+    profile_name:
+      properties:
+        region: region0
+        role_arn: role_arn0
+        source_profile: source_profile0
+        output: output0
+    profile_name1:
+      properties:
+      ...
+  access_key: aws_access_key
+  secret_access_key: aws_secret_access_key
+```
+
+La configuration des arn pour la commande `kubenv` :
+```yaml
+kubenv:
+  command1: arn1
+  command2: arn2
+  ...
+```
+Utiliser la commande `kubenv command1` pour utiliser le context kubectl `arn1`.
+
+La configuration du tunnel :
+```yaml
+tunnels:
+- host: host
+  hostname: hostname
+  user: tunnel_user
+  local_forward:
+  - line1
+  - line2
+  - line3
+  ...
+  key_name: key_name.pem
+- host: host2
+  hostname: hostname2
+  ...
+```
+Vos clés ssh doivent être présentes dans `/provisioning/role/tunnel/files`.
+Lancement du tunnel :
+```bash
+# Tunnel host
+sudo su
+ssh host
+# Tunnel host2
+sudo su
+ssh host2
+```
+
+La configuration du fichier `etc/hosts` :
+```yaml
+hosts_file:
+- line1
+- line2
+- line3
+...
+```
+
+Plugins vim à ajouter dans `~/.vimrc` (via Vundle) :
 ```yaml
 vim_plugins:
 - plugin
 - plugin
+...
 ```
 
 Le reste de la customisation peut être effectué dans le fichier `Vagrantfile`.
@@ -145,22 +165,9 @@ Mise à jour kubeconfig pour PRO :
 aws eks update-kubeconfig --name softwarefactory-pro --role-arn arn:aws:iam::717170762493:role/rol-softfactory-pro-base-wl --profile pro
 ```
 
-Changer de contexte kubectl :
-```bash
-kubenv dev
-kubenv oat
-kubenv pro
-```
-
 Initialisation helm client only :
 ```bash
 helm init --client-only
-```
-
-Lancement du double tunnel:
-```bash
-sudo su
-ssh gateway-ah
 ```
 
 ## TODO

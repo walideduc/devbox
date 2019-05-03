@@ -1,0 +1,15 @@
+{% if tunnels %}
+{% for tunnel in tunnels %}
+Host {{ tunnel.host }}
+Hostname {{ tunnel.hostname }}
+User {{ tunnel.user }}
+IdentityFile /root/.ssh/{{ tunnel.key_name }}
+ProxyCommand connect-proxy -H {{ proxy.host }}:{{ proxy.port }} %h %p
+{% if tunnel.local_forward %}
+{% for line in tunnel.local_forward %}
+{{ line }}
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+{% endif %}

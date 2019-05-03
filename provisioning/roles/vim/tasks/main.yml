@@ -6,20 +6,11 @@
     dest: /home/vagrant/.vim/bundle/Vundle.vim
     repo: https://github.com/VundleVim/Vundle.vim.git
 
-- name: Init ~/.vimrc
+- name: Create ~/.vimrc
   become: no
-  copy:
+  template:
+    src: .vimrc.j2
     dest: /home/vagrant/.vimrc
-    src: .vimrc
-
-- name: Configure Plugins
-  become: no
-  lineinfile:
-    path: "/home/vagrant/.vimrc"
-    line: "{{ item }}"
-    insertafter: "\" Plugins :"
-  with_items: "{{ vim_plugins }}"
-  when: vim_plugins
 
 - name: Install Plugins
   become: no
