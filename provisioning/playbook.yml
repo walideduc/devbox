@@ -4,6 +4,7 @@
   roles:
   - role: package
   - role: helm
+  - role: kube
   - role: aws
   - role: tunnel
   - role: terraform

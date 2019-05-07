@@ -13,7 +13,7 @@ Un dossier partagé est automatiquement provisionné entre Windows, sur `$(pwd)`
 1. Installer `Vagrant` : https://www.vagrantup.com/downloads.html
 2. Installer `VirtualBox` : https://www.virtualbox.org/wiki/Downloads
 3. Cette VM nécessite `4Go RAM` et `4 cpus` pour fonctionner
-4. Configurer le proxy :
+4. Configurer le proxy sur la machine host :
 ```cmd
 set HTTPS_PROXY=http://proxy.priv.atos.fr:3128
 set HTTP_PROXY=http://proxy.priv.atos.fr:3128
@@ -170,7 +170,32 @@ Initialisation helm client only :
 helm init --client-only
 ```
 
+## Microk8s
+
+Microk8s permet de mettre en place un Kubernetes local avec un seul noeud.
+
+Microk8s nécessite d'éteindre le service docker :
+```bash
+sudo service docker stop
+```
+
+Arrêt de microk8s :
+```bash
+microk8s.stop
+```
+
+Lancer/Relancer microk8s :
+```bash
+microk8s.start
+```
+
+Export de la config pour utiliser `kubectl` :
+```bash
+microk8s.kubectl config view --raw >> $HOME/.kube/config
+```
+
+Documentation microk8s : [https://microk8s.io/docs/](https://microk8s.io/docs/)
+
 ## TODO
 
-* Déploiement Kubespray local
 * Configuration .m2/settings.xml
