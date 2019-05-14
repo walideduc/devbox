@@ -189,9 +189,21 @@ Lancer/Relancer microk8s :
 microk8s.start
 ```
 
-Export de la config pour utiliser `kubectl` :
+Export et merge de la config pour utiliser `kubectl` :
 ```bash
-microk8s.kubectl config view --raw >> $HOME/.kube/config
+microk8s.kubectl config view --raw > $HOME/.kube/microsk8s.config
+export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
+export KUBECONFIG=$KUBECONFIG:$HOME/.kube/microsk8s.config
+kubectl config view --raw > $HOME/.kube/tmp.config
+mv $HOME/.kube/tmp.config $HOME/.kube/config
+```
+Configurer `kubenv` pour microk8s :
+```yaml
+kubenv:
+  command1: arn1
+  command2: arn2
+  microk8s: microk8s
+  ...
 ```
 
 Documentation microk8s : [https://microk8s.io/docs/](https://microk8s.io/docs/)
