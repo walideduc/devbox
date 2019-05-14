@@ -1,0 +1,40 @@
+---
+
+- name: Install snapd
+  yum:
+    name: snapd
+    state: present
+
+- name: Enable snapd.socket
+  systemd:
+    name: snapd.socket
+    enabled: yes
+    state: started 
+
+- name: Set proxy for snapd
+  become: yes
+  lineinfile:
+    path: /etc/sysconfig/snapd
+    line: "{{ item }}"
+  with_items:
+  - http_proxy={{ http_proxy }}
+  - https_proxy={{ https_proxy }}
+
+- name: Create symbolic link for snapd
+  file:
+    path: /snap
+    src: /var/lib/snapd/snap
+    state: link
+
+- name: Check snapd service
+  service:
+    name: snapd
+    enabled: yes
+    state: started
+
+- name: Install microk8s
+  command: snap install microk8s --classic
+  register: result
+  until: result is success
+  retries: 20
+  delay: 1

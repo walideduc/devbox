@@ -62,4 +62,3 @@
   pip:
     name: awscli
     state: present
-
